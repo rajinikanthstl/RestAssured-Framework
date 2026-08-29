@@ -3,6 +3,7 @@ package test;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
@@ -11,6 +12,7 @@ import response.models.CreateUserResponse;
 import response.models.User;
 import services.UserService;
 
+@Listeners(listeners.TestListeners.class)
 public class CreateUser{
 	
 	@Test(description="creating a user with valid data")

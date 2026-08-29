@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
 import response.models.SearchResponse;
 import response.models.UserData;
 import services.UserService;
-
+@Listeners(listeners.TestListeners.class)
 public class SearchUser {
 	
 	@Test(description="search user by firstname")
@@ -20,7 +21,7 @@ public class SearchUser {
 		UserService user = new UserService();
 		
 		Map<String,Object> qparams = new HashMap<>();
-		qparams.put("search","Rajesh");
+		qparams.put("search","Carmine");
 		
 		Response response = user.Search(qparams,"/users");
 		

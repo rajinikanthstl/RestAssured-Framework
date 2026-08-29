@@ -2,11 +2,13 @@ package test;
 
 import java.io.IOException;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
 import services.UserService;
 
+@Listeners(listeners.TestListeners.class)
 public class DeleteUser {
 	
 	@Test(description="delete user by Id")

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
@@ -12,14 +13,14 @@ import request.models.ParkRequest;
 import response.models.ParkResponse;
 import services.CostService;
 
+@Listeners(listeners.TestListeners.class)
 public class ParkingCost {
-	
-	@Test
+	@Test(description="calculate parking cost")
 	void parkingCost() throws IOException {
 		
 		ParkRequest req = new ParkRequest.Builder().parkType("Valet")
-				.entryDate("2027-08-06T13:53")
-				.exitDate("2027-08-06T19:53")
+				.entryDate("2027-09-06T13:53")
+				.exitDate("2027-09-06T19:53")
 				.build();
 
 		CostService cost = new CostService();
@@ -27,6 +28,7 @@ public class ParkingCost {
 		headers.put("Accept", "application/json");
 		
 		Response response = cost.calculateCost(req,headers,"/calculate-cost");
+	
 		
 		ParkResponse rs = (response.as(ParkResponse.class));
 		
