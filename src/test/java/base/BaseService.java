@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.Properties;
 
+import filters.LoggingFilter;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -15,6 +17,10 @@ import io.restassured.specification.RequestSpecification;
 public class BaseService{
 	RequestSpecification requestSpecification;
 	String BASE_URI;
+	
+	static {
+		RestAssured.filters(new LoggingFilter());
+	}
 	
 	public void readProperties() throws IOException {
 		Path builtPath = Path.of(System.getProperty("user.dir"),"src","test", 
@@ -30,6 +36,7 @@ public class BaseService{
 		
 		fis.close();		
 	}
+	
 	
 	public BaseService() throws IOException {
 		 readProperties();
